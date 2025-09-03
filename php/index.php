@@ -23,3 +23,6 @@ echo $audi . '<br />';
 echo $smart . '<br />';
 echo $bicycle . '<br />';
 echo $trike . '<br />';
+
+$bmw = Car::createCarFromManufacturer('BMW');
+echo $bmw . '<br />';
