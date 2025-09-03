@@ -8,7 +8,7 @@ abstract class Vehicle {
 
     protected int $maxNumberOfPersons;
 
-    protected string|null $manufacturer = null;
+    protected ManufacturerEnum|null $manufacturer = null;
 
 
     public function __toString(): string
@@ -16,7 +16,7 @@ abstract class Vehicle {
         $className = get_class($this);
 
         if (null !== $this->getManufacturer()) {
-            $className .= " of type {$this->getManufacturer()}";
+            $className .= " of type {$this->getManufacturer()->name}";
         }
 
         return "This {$className} has {$this->getNumberOfWheels()} wheels and can carry a maximum of {$this->getMaxNumberOfPersons()} persons.";
@@ -60,12 +60,12 @@ abstract class Vehicle {
         return $this;
     }
 
-    public function getManufacturer(): string|null
+    public function getManufacturer(): ManufacturerEnum|null
     {
         return $this->manufacturer;
     }
 
-    public function setManufacturer(string $manufacturer): self
+    public function setManufacturer(ManufacturerEnum $manufacturer): self
     {
         $this->manufacturer = $manufacturer;
 

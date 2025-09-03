@@ -39,7 +39,7 @@ class Car extends Vehicle
     }
 
 
-    static public function createCarFromManufacturer(string $manufacturer): static
+    static public function createCarFromManufacturer(ManufacturerEnum $manufacturer): static
     {
         $car = new static();
         $car->setManufacturer($manufacturer);
