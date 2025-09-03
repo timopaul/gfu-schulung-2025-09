@@ -1,0 +1,115 @@
+
+body {
+	font-family: arial;
+}
+
+h1 {
+	color: rgba(0, 0, 255, .8);
+}
+
+h3,
+h4 {
+	color: green;
+}
+
+h5 {
+	background-color: #0000ff;
+	color: rgba(255, 255, 0, .7);
+}
+
+.first-p {
+	margin-left: 20px;
+}
+
+#name {
+	padding-left: 20px;
+}
+
+strong {
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+table strong {
+	color: darkblue;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color: grey;
+}
+
+a:hover {
+	color: red;
+}
+
+
+.read-more {
+	display: inline-block;
+	max-width: 100px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.read-more:hover {
+	overflow: visible
+}
+
+.box {
+	font-size: 18px;
+
+	margin-top: 100px;
+	margin-bottom: 100px;
+
+	border-color: darkgrey;
+	border-width: 1px;
+	border-style: solid
+}
+
+.box .head,
+.box .body,
+.box .foot {
+	padding-right: 30px;
+	padding-left: 30px;
+}
+
+.box .head,
+.box .foot {
+	background-color: lightgrey;
+	border-color: darkgrey;
+	border-style: solid;
+}
+
+.box .head {
+	font-size: 120%;
+	font-weight: 900;
+
+	letter-spacing: 4px;
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-width: 0 0 1px 0;
+}
+
+.box .body {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.box .foot {
+	font-size: 80%;
+	color: grey;
+
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+	text-align: right;
+	border-width: 1px 0 0 0;
+}
+
+.highlight {
+	text-decoration: underline;
+	color: purple;
+}
+

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>statische HTML Übung</title>
+
+        <meta charset="UTF-8" />
+
+	<link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+
+        <h1>Hallo Welt 1</h1>
+        <h2 style="color: red;">Hallo Welt 2</h2>
+        <h3>Hallo Welt 3</h3>
+        <h4>Hallo Welt 4</h4>
+        <h5>Hallo Welt 5</h5>
+        <h6>Hallo Welt 6</h6>
+
+        <p class="first-p">Lorem ipsum dolor sit amet</p>
+        <p>Lorem ipsum dolor sit<br />amet</p>
+
+	<hr />
+
+        <p>Lorem <strong>ipsum</strong> dolor <em>sit</em> amet</p>
+
+        <p>Dies ist<br />
+	Zeilenumbruch</p>
+
+        <a href="http://google.com" class="read-more">mehr dazu kannst du hier lesen, klicke einfach!</a>
+
+        <ul>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>
+                List Item 3
+                <ol>
+                    <li><span class="highlight">Item 3.1</span></li>
+                    <li>Item 3.2</li>
+                </ol>
+            </li>
+        </ul>
+
+        <ol>
+            <li>List Item 1
+                <ul>
+                    <li>List Item 1.1</li>
+                </ul>
+            </li>
+            <li>
+                List Item 2
+                <ol>
+                    <li>Item 2.1</li>
+                    <li>Item <strong>2.2</strong></li>
+                </ol>
+            </li>
+            <li>List Item 3</li>
+        </ol>
+
+        <table border="3" cellspacing="0" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>Spalte 1</th>
+                    <th>Spalte 2</th>
+                    <th>Spalte 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Zeile 1, Spalte 1</th>
+                    <td>Zeile 1, Spalte 2</td>
+                    <td>Zeile 1, Spalte 3</td>
+                <tr>
+                <tr>
+                    <th><em>Zeile 2, Spalte 1</em></th>
+                    <td>Zeile 2, Spalte 2</td>
+                    <td>Zeile 2, Spalte 3</td>
+                <tr>
+                <tr>
+                    <th>Zeile 3, Spalte 1</th>
+                    <td colspan="2">Zeile 3, <strong>Spalte 2 & Spalte 3</strong></td>
+                <tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+
+
+        <form method="post" action="ziel.php">
+            <table>
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td>
+                        <input type="text" name="name" id="name" value="Timo" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alter:</td>
+                    <td>
+                        <input type="number" name="age" placeholder="Kontakt erst ab 18 erlaubt" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Welche Abteilung betrifft diene Anfrage:</td>
+                    <td>
+                        <select name="departure">
+                            <option>IT</option>
+                            <option>Marketing</option>
+                            <option selected="selected">Akquise</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Welche Abteilung betrifft diene Anfrage:</td>
+                    <td>
+                        <ul>
+                            <li><input type="radio" name="departure-2" value="it">IT</li>
+                            <li><input type="radio" name="departure-2" value="marketing" checked="checked">Marketing</li>
+                            <li><input type="radio" name="departure-2" value="akquise">Akquise</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Wochentage für Rückrif:</td>
+                    <td>
+                        <ul>
+                            <li><input type="checkbox" name="response-time[]" value="mo">Montag</li>
+                            <li><input type="checkbox" name="response-time[]" value="tu" checked="checked">Dienstag</li>
+                            <li><input type="checkbox" name="response-time[]" value="we">Mittwoch</li>
+                            <li><input type="checkbox" name="response-time[]" value="th" checked="checked">Donnerstag</li>
+                            <li><input type="checkbox" name="response-time[]" value="fr">Freitag</li>
+                        <ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="mail" name="email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Betreff:</td>
+                    <td>
+                        <input type="text" name="subject" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Text:</td>
+                    <td>
+                        <textarea name="text"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="absenden" />
+                        <input type="reset" value="zurücksetzen" />
+                    </td>
+                <tr>
+            </table>
+        </form>
+
+
+        <h2>Login</h2>
+        <form method="post" action="login.php">
+            <table>
+                <tr>
+                    <td><label for="login">Login: </td>
+                    <td><input type="text" name="login"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Passwort: </td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">absenden</button>
+                    </td>
+                <tr>
+            </table>
+        </form>
+
+
+	<div class="box">
+	    <div class="head">
+		Headline
+	    </div>
+	    <div class="body">
+		<p>Lorem ipsum dolor sit amet, consetetur <span class="highlight">sadipscing</span> elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+		<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et <span class="highlight">accumsan et iusto odio dignissim qui blandit</span> praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+		<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation <span class="highlight">ullamcorper</span> suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+	    </div>
+	    <div class="foot">
+		geschrieben am Montag, von Timo
+	    </div>
+	</div>
+
+
+
+
+    
+        <img src="https://picsum.photos/200/300" alt="ein blaues Hochaus vor grüner Wiese" />
+
+    <body>
+</html>
