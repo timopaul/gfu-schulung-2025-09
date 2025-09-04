@@ -7,6 +7,7 @@ namespace App\Repositories;
 use App\Interfaces\Repositories\ContactRepositoryInterface;
 use App\Models\Contact;
 use App\Repositories\Traits\HasDatabaseConnection;
+use PDO;
 
 class ContactRepository implements ContactRepositoryInterface
 {
@@ -17,24 +18,19 @@ class ContactRepository implements ContactRepositoryInterface
         $stmt = 'SELECT * FROM contacts';
         $contacts = $this->executeQuery($stmt);
 
-        return array_map(function ($contact) {
-            return new Contact(
-                id: (int) $contact['id'],
-                firstname: $contact['firstname'],
-                lastname: $contact['lastname'],
-                title: $contact['title'],
-                email: $contact['email'],
-                skills: $contact['skills'],
-                about: $contact['about'],
-            );
-
-        }, $contacts);
+        return array_map([$this, 'mapToContact'], $contacts);
     }
 
     public function findById(int $id): Contact
     {
-        // TODO: Implement findById() method.
-        return new Contact(0, '', '', '', '', '', '');
+        $stmt = 'SELECT * FROM contacts WHERE id = :id';
+        $query = $this->pdo->prepare($stmt);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        $contact = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $this->mapToContact($contact);
     }
 
     public function create(array $data): int
@@ -53,5 +49,18 @@ class ContactRepository implements ContactRepositoryInterface
     {
         // TODO: Implement delete() method.
         return true;
+    }
+
+    private function mapToContact(array $data): Contact
+    {
+        return new Contact(
+            id: (int) $data['id'],
+            firstname: $data['firstname'],
+            lastname: $data['lastname'],
+            title: $data['title'],
+            email: $data['email'],
+            skills: $data['skills'],
+            about: $data['about'],
+        );
     }
 }
