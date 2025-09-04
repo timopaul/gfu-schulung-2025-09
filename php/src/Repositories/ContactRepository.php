@@ -31,10 +31,10 @@ class ContactRepository implements ContactRepositoryInterface
         }, $contacts);
     }
 
-    public function findById(int $id): array
+    public function findById(int $id): Contact
     {
         // TODO: Implement findById() method.
-        return [];
+        return new Contact(0, '', '', '', '', '', '');
     }
 
     public function create(array $data): int
