@@ -1,0 +1,47 @@
+<?php
+    use App\Models\Contact;
+
+    global $contacts;
+?><!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Liste von Kontakten</title>
+
+    <link href="assets/styles/main.css" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Kontakte</h1>
+
+        <nav>
+            <a href="index.php">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>E-Mail-Adresse</th>
+            </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($contacts as $contact): ?>
+                    <?php /** @var Contact $contact */ ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars("{$contact->getFirstname()} {$contact->getLastname()}"); ?></td>
+                        <td><?php echo htmlspecialchars($contact->getEmail()); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; <?php echo date('Y'); ?> Timo Paul Dienstleistungen</p>
+    </footer>
+
+</body>
+</html>

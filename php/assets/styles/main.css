@@ -1,0 +1,72 @@
+:root {
+    --color-background: #f5f7fa;
+    --color-background-secondary: #2c3e50;
+    --color-text: #333333;
+    --color-text-secondary: #ffffff;
+    --color-table-header-background: #34495e;
+    --color-table-header-text: #ffffff;
+    --color-table-row-hover: #f1f1f1;
+    --color-table-row-secondary: #f9f9f9;
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: Arial, sans-serif;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+header,
+footer {
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-secondary);
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 1.5rem;
+}
+
+nav a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin: 0 .5rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: .5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+table thead {
+    background-color: var(--color-table-header-background);
+    color: var(--color-table-header-text);
+}
+
+table tbody tr:nth-child(even) {
+    background-color: var(--color-table-row-secondary);
+}
+
+table tbody tr:hover {
+    background-color: var(--color-table-row-hover);
+}
+
+footer p {
+    font-size: .8rem;
+}

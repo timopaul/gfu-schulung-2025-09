@@ -19,6 +19,7 @@ $contactRepository->connect(
 
 $contacts = $contactRepository->findAll();
 
+include __DIR__ . '/templates/contacts/index.phtml';
 
-echo '<pre>$dbConfig: ' . print_r($dbConfig, true) . '</pre>';
-echo '<pre>$contacts: ' . print_r($contacts, true) . '</pre>';
+#echo '<pre>$dbConfig: ' . print_r($dbConfig, true) . '</pre>';
+#echo '<pre>$contacts: ' . print_r($contacts, true) . '</pre>';
