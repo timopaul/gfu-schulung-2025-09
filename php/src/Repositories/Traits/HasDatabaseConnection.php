@@ -4,26 +4,22 @@ declare(strict_types=1);
 
 namespace App\Repositories\Traits;
 
+use PDO;
+
 trait HasDatabaseConnection
 {
-    private \mysqli $connection;
+    private PDO $pdo;
 
     public function connect(string $host, int $port, string $username, string $password, string $database): self
     {
-        $this->connection = new \mysqli($host, $username, $password, $database, $port);
+        $this->pdo = new PDO("mysql:host={$host};port={$port};dbname={$database}", $username, $password);
 
         return $this;
     }
 
     protected function executeQuery(string $query): array|bool
     {
-        $res = $this->connection->query($query);
-
-        if (is_bool($res)) {
-            return $res;
-        }
-
-        return $res->fetch_all(MYSQLI_ASSOC);
+        return $this->pdo->query($query)->fetchAll();
     }
 
 }
