@@ -2,29 +2,25 @@
 
 declare(strict_types=1);
 
-include_once 'src/ManufacturerEnum.php';
-include_once 'src/Vehicle.php';
-include_once 'src/Car.php';
-include_once 'src/Bicycle.php';
-include_once 'src/Trike.php';
+$srcPath = realpath(__DIR__) . '/src/';
 
-$audi = (new Car)
-    ->setManufacturer(ManufacturerEnum::Audi);
+require $srcPath . 'Interfaces/Repositories/ContactRepositoryInterface.php';
+require $srcPath . 'Repositories/Traits/HasDatabaseConnection.php';
+require $srcPath . 'Repositories/ContactRepository.php';
 
-$smart = (new Car)
-    ->setManufacturer(ManufacturerEnum::Smart)
-    ->setMaxNumberOfPersons(2)
-    ->setNumberOfDoors(3);
+$dbConfig = require dirname(__DIR__ . '/..') . '/config/database.php';
 
-$bmw = Car::createCarFromManufacturer(ManufacturerEnum::BMW)
-    ->setNumberOfDoors(3);
+$contactRepository = new ContactRepository();
+$contactRepository->connect(
+    $dbConfig['host'],
+    $dbConfig['port'],
+    $dbConfig['username'],
+    $dbConfig['password'],
+    $dbConfig['database'],
+);
 
-$bicycle = new Bicycle;
+$contacts = $contactRepository->findAll();
 
-$trike = new Trike;
 
-echo $audi . '<br />';
-echo $smart . '<br />';
-echo $bmw . '<br />';
-echo $bicycle . '<br />';
-echo $trike . '<br />';
+echo '<pre>$dbConfig: ' . print_r($dbConfig, true) . '</pre>';
+echo '<pre>$contacts: ' . print_r($contacts, true) . '</pre>';
