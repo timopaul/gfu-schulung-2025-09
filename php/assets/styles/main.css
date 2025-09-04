@@ -7,6 +7,10 @@
     --color-table-header-text: #ffffff;
     --color-table-row-hover: #f1f1f1;
     --color-table-row-secondary: #f9f9f9;
+    --color-button-primary: #3498db;
+    --color-button-primary-hover: #2980b9;
+    --color-button-danger: #e74c3c;
+    --color-button-danger-hover: #c0392b;
 }
 
 body {
@@ -65,6 +69,45 @@ table tbody tr:nth-child(even) {
 
 table tbody tr:hover {
     background-color: var(--color-table-row-hover);
+}
+
+table td.actions {
+    text-align: right;
+    white-space: nowrap;
+    width: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: .25rem 1rem;
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: .9rem;
+}
+
+.btn-primary {
+    background-color: var(--color-button-primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-button-primary-hover);
+}
+
+.btn-danger {
+    background-color: var(--color-button-danger);
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: var(--color-button-danger-hover);
+}
+
+div.actions {
+    text-align: right;
+    margin-bottom: 1rem;
 }
 
 footer p {

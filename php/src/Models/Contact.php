@@ -93,5 +93,12 @@ class Contact
         return $this;
     }
 
+    public function getName(): string
+    {
+        return implode(' ', [
+            $this->getFirstname(),
+            $this->getLastname(),
+        ]);
+    }
 
 }
