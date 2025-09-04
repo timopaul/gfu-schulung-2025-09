@@ -14,11 +14,6 @@ spl_autoload_register(function (string $className) {
     $relativeClass = substr($className, strlen($prefix));
     $file = $baseDir . str_replace("\\", '/', $relativeClass) . '.php';
 
-    echo $className . '<br />';
-    echo $relativeClass . '<br />';
-    echo $file . '<br />';
-    echo '--<br />';
-
     if (file_exists($file)) {
         require_once $file;
     }
