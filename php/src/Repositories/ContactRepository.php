@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Interfaces\Repositories\ContactRepositoryInterface;
+use App\Models\Contact;
 use App\Repositories\Traits\HasDatabaseConnection;
 
 class ContactRepository implements ContactRepositoryInterface
@@ -14,7 +15,20 @@ class ContactRepository implements ContactRepositoryInterface
     public function findAll(): array
     {
         $stmt = 'SELECT * FROM contacts';
-        return $this->executeQuery($stmt);
+        $contacts = $this->executeQuery($stmt);
+
+        return array_map(function ($contact) {
+            return new Contact(
+                id: (int) $contact['id'],
+                firstname: $contact['firstname'],
+                lastname: $contact['lastname'],
+                title: $contact['title'],
+                email: $contact['email'],
+                skills: $contact['skills'],
+                about: $contact['about'],
+            );
+
+        }, $contacts);
     }
 
     public function findById(int $id): array
