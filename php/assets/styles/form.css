@@ -1,0 +1,35 @@
+input,
+textarea {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--color-input-border);
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+}
+
+input {
+    width: 300px;
+}
+
+textarea {
+    width: 300px;
+    height: 7rem;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--color-input-border-focus);
+    outline: none;
+}
+
+table.edit th {
+    text-align: right;
+    padding-right: 1rem;
+}
+
+table.edit td input + .error,
+table.edit td textarea + .error {
+    display: inline-block;
+    color: var(--color-danger);
+    font-size: 0.8rem;
+}

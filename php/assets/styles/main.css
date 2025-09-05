@@ -1,17 +1,9 @@
-:root {
-    --color-background: #f5f7fa;
-    --color-background-secondary: #2c3e50;
-    --color-text: #333333;
-    --color-text-secondary: #ffffff;
-    --color-table-header-background: #34495e;
-    --color-table-header-text: #ffffff;
-    --color-table-row-hover: #f1f1f1;
-    --color-table-row-secondary: #f9f9f9;
-    --color-button-primary: #3498db;
-    --color-button-primary-hover: #2980b9;
-    --color-button-danger: #e74c3c;
-    --color-button-danger-hover: #c0392b;
-}
+
+@import 'variables.css';
+
+@import 'buttons.css';
+@import 'flash.css';
+@import 'form.css';
 
 body {
     background-color: var(--color-background);
@@ -77,34 +69,6 @@ table td.actions {
     width: 1rem;
 }
 
-.btn {
-    display: inline-block;
-    padding: .25rem 1rem;
-    border: none;
-    border-radius: .25rem;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: .9rem;
-}
-
-.btn-primary {
-    background-color: var(--color-button-primary);
-    color: #ffffff;
-}
-
-.btn-primary:hover {
-    background-color: var(--color-button-primary-hover);
-}
-
-.btn-danger {
-    background-color: var(--color-button-danger);
-    color: #ffffff;
-}
-
-.btn-danger:hover {
-    background-color: var(--color-button-danger-hover);
-}
-
 div.actions {
     text-align: right;
     margin-bottom: 1rem;
@@ -113,3 +77,4 @@ div.actions {
 footer p {
     font-size: .8rem;
 }
+

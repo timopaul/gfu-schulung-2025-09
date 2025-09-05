@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\DTOs\ContactDTO;
 use App\Interfaces\Repositories\ContactRepositoryInterface;
 use App\Models\Contact;
 use App\Repositories\Traits\HasDatabaseConnection;
@@ -33,22 +34,53 @@ class ContactRepository implements ContactRepositoryInterface
         return $this->mapToContact($contact);
     }
 
-    public function create(array $data): int
+    public function create(ContactDTO $data): int|false
     {
-        // TODO: Implement create() method.
-        return 0;
+        $stmt = <<<SQL
+            INSERT INTO contacts 
+            SET firstname = :firstname,
+                lastname = :lastname,
+                title = :title,
+                email = :email,
+                skills = :skills,
+                about = :about
+        SQL;
+        $query = $this->pdo->prepare($stmt);
+        $this->bindValues($query, $data);
+
+        if ( ! $query->execute()) {
+            return false;
+        }
+
+        return (int) $this->pdo->lastInsertId();
     }
 
-    public function update(int $id, array $data): bool
+    public function update(int $id, ContactDTO $data): bool
     {
-        // TODO: Implement update() method.
-        return true;
+        $stmt = <<<SQL
+            UPDATE contacts
+            SET firstname = :firstname,
+                lastname = :lastname,
+                title = :title,
+                email = :email,
+                skills = :skills,
+                about = :about
+            WHERE id = :id
+        SQL;
+
+        $query = $this->pdo->prepare($stmt);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $this->bindValues($query, $data);
+
+        return $query->execute();
     }
 
     public function delete(int $id): bool
     {
-        // TODO: Implement delete() method.
-        return true;
+        $stmt = 'DELETE FROM contacts WHERE id = :id';
+        $query = $this->pdo->prepare($stmt);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        return $query->execute();
     }
 
     private function mapToContact(array $data): Contact
@@ -62,5 +94,17 @@ class ContactRepository implements ContactRepositoryInterface
             skills: $data['skills'],
             about: $data['about'],
         );
+    }
+
+    public function bindValues(false|\PDOStatement $query, ContactDTO $data): self
+    {
+        $query->bindValue(':firstname', $data->getFirstname());
+        $query->bindValue(':lastname', $data->getLastname());
+        $query->bindValue(':title', $data->getTitle());
+        $query->bindValue(':email', $data->getEmail());
+        $query->bindValue(':skills', $data->getSkills());
+        $query->bindValue(':about', $data->getAbout());
+
+        return $this;
     }
 }

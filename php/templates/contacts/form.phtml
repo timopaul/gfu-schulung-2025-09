@@ -1,0 +1,83 @@
+<?php
+
+use App\Enums\ContactActionEnum;
+use App\Models\Contact;
+
+?><form method="post" action="index.php?action=<?php echo ContactActionEnum::Save->value; ?>">
+
+    <?php if (isset($contact) && $contact->exists()): ?>
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($contact->getId()); ?>">
+    <?php endif; ?>
+
+    <table class="edit">
+        <tbody>
+            <tr>
+                <th><label for="firstname">Vorname:</label></th>
+                <td>
+                    <input required type="text" id="firstname" name="firstname"
+                           value="<?php echo old('firstname', $contact ?? null); ?>">
+                    <?php if (isset($errors['firstname'])): ?>
+                        <div class="error"><?php echo htmlspecialchars($errors['firstname']); ?></div>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="lastname">Nachname:</label></th>
+                <td>
+                    <input required type="text" id="lastname" name="lastname"
+                           value="<?php echo old('lastname', $contact ?? null); ?>">
+                    <?php if (isset($errors['lastname'])): ?>
+                        <div class="error"><?php echo htmlspecialchars($errors['lastname']); ?></div>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="title">Job-Bezeichnung:</label></th>
+                <td>
+                    <input type="text" id="title" name="title"
+                           value="<?php echo old('title', $contact ?? null); ?>">
+                    <?php if (isset($errors['title'])): ?>
+                        <div class="error"><?php echo htmlspecialchars($errors['title']); ?></div>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="email">E-Mail-Adresse:</label></th>
+                <td>
+                    <input required type="email" id="email" name="email"
+                           value="<?php echo old('email', $contact ?? null); ?>">
+                    <?php if (isset($errors['email'])): ?>
+                        <div class="error"><?php echo htmlspecialchars($errors['email']); ?></div>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="skills">Skills:</label></th>
+                <td>
+                    <input type="text" id="skills" name="skills"
+                           value="<?php echo old('skills', $contact ?? null); ?>">
+                    <?php if (isset($errors['skills'])): ?>
+                        <div class="error"><?php echo htmlspecialchars($errors['skills']); ?></div>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="about">Über den Kontakt:</label></th>
+                <td>
+                    <textarea name="about"
+                              id="about"
+                    ><?php echo old('about', $contact ?? null); ?></textarea>
+                    <?php if (isset($errors['about'])): ?>
+                        <div class="error"><?php echo htmlspecialchars($errors['about']); ?></div>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <a href="index.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Abbrechen</a>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Speichern</button>
+    </div>
+
+</form>

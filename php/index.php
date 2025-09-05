@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+use App\DTOs\ContactDTO;
 use App\Enums\ContactActionEnum;
+use App\Enums\FlashMessageTypeEnum;
 use App\Repositories\ContactRepository;
 
 require_once realpath(__DIR__) . '/src/autoloader.php';
+
+session_start();
 
 $dbConfig = require dirname(__DIR__ . '/..') . '/config/database.php';
 
@@ -25,8 +29,18 @@ $action = ContactActionEnum::tryFrom($requestedAction) ?? ContactActionEnum::Lis
 
 switch ($action) {
     case ContactActionEnum::List:
-        $contacts = $contactRepository->findAll();
-        include __DIR__ . '/templates/contacts/index.phtml';
+        render('contacts/list', [
+            'title' => 'Kontakte',
+            'contacts' => $contactRepository->findAll(),
+        ]);
+        break;
+
+    case ContactActionEnum::Create:
+        render('contacts/form', [
+            'title' => 'Neuen Kontakt anlegen',
+            'errors' => $_SESSION['errors'] ?? [],
+        ]);
+        unset($_SESSION['errors']);
         break;
 
     case ContactActionEnum::Edit:
@@ -36,11 +50,50 @@ switch ($action) {
         }
         $contact = $contactRepository->findById($id);
 
-        echo '<pre>$contact: ' . print_r($contact, true) . '</pre>';
+        render('contacts/form', [
+            'title' => "Kontakt von <em>{$contact->getName()}</em> bearbeiten",
+            'contact' => $contact,
+            'errors' => $_SESSION['errors'] ?? [],
+        ]);
+        unset($_SESSION['errors']);
+        break;
 
+    case ContactActionEnum::Save:
+
+        $dto = ContactDTO::fromPost();
+
+        $res = $dto->validate();
+        if (is_array($res) && ! empty($res)) {
+            $_SESSION['errors'] = $res;
+            $action = $dto->hasId() ? ContactActionEnum::Edit : ContactActionEnum::Create;
+            $url = 'index.php?action=' . $action->value;
+            if ($dto->hasId()) {
+                $url .= '&id=' . $dto->getId();
+            }
+            $dto->asOld();
+            redirect($url);
+        }
+
+        if ($dto->hasId()) {
+            $res = $contactRepository->update($dto->getId(), $dto);
+            setFlash(FlashMessageTypeEnum::Success, 'Contact updated successfully.');
+        } else {
+            $res = $contactRepository->create($dto);
+            setFlash(FlashMessageTypeEnum::Success, 'Contact created successfully.');
+        }
+
+        redirect();
+        break;
+
+    case ContactActionEnum::Delete:
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if (false !== $id && null !== $id) {
+            $contactRepository->delete($id);
+            setFlash(FlashMessageTypeEnum::Success, 'Contact deleted successfully.');
+        } else {
+            setFlash(FlashMessageTypeEnum::Error, 'Invalid contact ID.');
+        }
+
+        redirect();
         break;
 }
-
-
-#echo '<pre>$dbConfig: ' . print_r($dbConfig, true) . '</pre>';
-#echo '<pre>$contacts: ' . print_r($contacts, true) . '</pre>';

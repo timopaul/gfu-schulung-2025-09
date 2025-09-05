@@ -1,0 +1,16 @@
+
+.flash {
+    padding: 1rem;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+}
+
+.flash-error {
+    background-color: var(--color-danger);
+    color: #ffffff;
+}
+
+.flash-success {
+    background-color: var(--color-success);
+    color: #ffffff;
+}

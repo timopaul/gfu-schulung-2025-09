@@ -1,0 +1,25 @@
+:root {
+    /** basic **/
+    --color-background: #f5f7fa;
+    --color-background-secondary: #2c3e50;
+    --color-danger: #e74c3c;
+    --color-success: #2ecc71;
+
+    --color-text: #333333;
+    --color-text-secondary: #ffffff;
+
+    /** tables **/
+    --color-table-header-background: #34495e;
+    --color-table-header-text: #ffffff;
+    --color-table-row-hover: #f1f1f1;
+    --color-table-row-secondary: #f9f9f9;
+
+    /** buttons **/
+    --color-button-primary: #3498db;
+    --color-button-primary-hover: #2980b9;
+    --color-button-danger-hover: #c0392b;
+
+    /** forms **/
+    --color-input-border: #dedede;
+    --color-input-border-focus: #2c3e50;
+}
