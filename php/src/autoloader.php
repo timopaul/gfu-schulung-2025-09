@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 include_once realpath(__DIR__) . '/functions.php';
+include_once realpath(__DIR__ . '/..') . '/vendor/autoload.php';
 
 spl_autoload_register(function (string $className) {
 

@@ -9,3 +9,5 @@
 /dashboard/
 /php/node_modules/
 /php/package-lock.json
+/php/composer.lock
+/php/vendor/

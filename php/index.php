@@ -5,15 +5,22 @@ declare(strict_types=1);
 use App\DTOs\ContactDTO;
 use App\Enums\ContactActionEnum;
 use App\Enums\FlashMessageTypeEnum;
-use App\Repositories\ContactRepository;
+use App\Interfaces\Repositories\ContactRepositoryInterface;
+use DI\ContainerBuilder;
 
 require_once realpath(__DIR__) . '/src/autoloader.php';
 
 session_start();
 
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions(require realpath(__DIR__) . '/config/di.php');
+$container = $containerBuilder->build();
+
 $dbConfig = require dirname(__DIR__ . '/..') . '/config/database.php';
 
-$contactRepository = new ContactRepository();
+/** @var ContactRepositoryInterface $contactRepository */
+$contactRepository = $container->get(ContactRepositoryInterface::class);
+
 $contactRepository->connect(
     $dbConfig['host'],
     $dbConfig['port'],
